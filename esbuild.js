@@ -18,7 +18,7 @@ esbuild.build({
   bundle: true,
   target: 'es6',
   plugins: [sassPlugin()],
-  outfile: 'dist/app.js',
+  outfile: 'dist/public/app.js',
   entryPoints: ['src/frontend/index.tsx'],
   define: {
     'process.env.NODE_ENV': '"production"',

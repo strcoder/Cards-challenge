@@ -8,10 +8,10 @@ import { ContextInterface } from '../../frontend/utils/interface/Context';
 const getInitialData = async (req: Request, mutateObj: Partial<ContextInterface>): Promise<Partial<ContextInterface>> => {
   const path = req.originalUrl.split('?').shift();
 
-  if (path === '/' || path === '/home') {
-    const { data } = await axios.get(`${API_URL}`, {});
-    mutateObj.user = data.data;
-  }
+  // if (path === '/' || path === '/home') {
+  //   const { data } = await axios.get(`${API_URL}`, {});
+  //   mutateObj.cards = data.data;
+  // }
 
   return mutateObj;
 };

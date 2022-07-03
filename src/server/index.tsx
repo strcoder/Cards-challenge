@@ -8,7 +8,7 @@ import { renderToString } from 'react-dom/server';
 import { Helmet, HelmetData } from 'react-helmet';
 import { StaticRouter } from 'react-router-dom/server';
 
-import { API_URL, ENV, PORT } from './config';
+import { API_URL, ENV, PORT, SESSION_SECRET } from './config';
 import { Provider } from '../frontend/context';
 import ServerApp from '../frontend/routes/App';
 import getInitialData from './utils/getInitialData';
@@ -21,15 +21,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
   resave: true,
-  secret: 'bla bla bla',
   saveUninitialized: true,
+  secret: SESSION_SECRET || '',
 }));
 
 app.use(helmet());
 app.use(helmet.permittedCrossDomainPolicies());
 app.disable('x-powered-by');
 
-const setResponse = (html: string, preloadedState: ContextInterface, helmet: HelmetData, role?: string) => {
+const setResponse = (html: string, preloadedState: ContextInterface, helmet: HelmetData) => {
   return (
     `<!DOCTYPE html>
     <html lang="es" ${helmet.htmlAttributes?.toString()}>
@@ -43,11 +43,11 @@ const setResponse = (html: string, preloadedState: ContextInterface, helmet: Hel
         ${helmet.meta?.toString()?.split('/>').join('/>\n\t\t')}
         ${helmet.link?.toString()?.split('/>').join('/>\n\t\t')}
         ${helmet.base?.toString()?.split('/>').join('/>\n\t\t')}
-        <link rel='shortcut icon' href='/logo-min-white.svg' type='image/svg' />
-        <link rel='apple-touch-icon' href='/logo-min-white.svg' />
+        <link rel='shortcut icon' href='/logo.svg' type='image/svg' />
+        <link rel='apple-touch-icon' href='/logo.svg' />
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="${role || 'landing'}.css" />
+        <link rel="stylesheet" type="text/css" href="app.css" />
         ${helmet.style?.toString()?.split('</style>').join('</style>\n\t\t')}
         ${helmet.script?.toString()?.split('</script>').join('</script>\n\t\t')}
       </head>
@@ -57,7 +57,7 @@ const setResponse = (html: string, preloadedState: ContextInterface, helmet: Hel
         <script type="text/javascript" id="preloadedState">
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')};
         </script>
-        <script type="text/javascript" src="${role || 'landing'}.js"></script>
+        <script type="text/javascript" src="app.js"></script>
       </body>
     </html>`
   );
@@ -72,18 +72,14 @@ const renderApp = async (req: express.Request, res: express.Response) => {
     language: language || 'es',
   };
   try {
-    await getInitialData(req, initialState);
+    // await getInitialData(req, initialState);
   } catch (error) {
     if (error.response && error.response.data) {
       const { message } = error.response.data;
-      if (['jwt expired', 'invalid signature'].includes(message)) {
-        res.clearCookie('token', { path: '/' });
-      } else {
-        initialState.serverError = {
-          message,
-          code: error.response.data.code,
-        };
-      }
+      initialState.serverError = {
+        message,
+        code: error.response.data.code,
+      };
     } else if (error instanceof Error) {
       initialState.serverError = {
         message: error.message,
@@ -107,42 +103,42 @@ const renderApp = async (req: express.Request, res: express.Response) => {
 
   res
     .set('Content-Security-Policy', "default-src *; img-src * 'self' blob: data: http://*;  style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
-    .send(setResponse(html, initialState, helmet, initialState?.user?.role));
+    .send(setResponse(html, initialState, helmet));
 };
 
-app.all('/api/*', (req, res) => {
-  try {
-    const contentType = req.headers?.['content-type'] || 'application/json';
-    const data: FormData | Record<string, any> = req.body;
+// app.all('/api/*', (req, res) => {
+//   try {
+//     const contentType = req.headers?.['content-type'] || 'application/json';
+//     const data: FormData | Record<string, any> = req.body;
 
-    return axios({
-      url: `${API_URL}${req.originalUrl.split('/api').join('')}`,
-      method: req.method as Method,
-      data,
-      headers: {
-        authorization: req.headers?.authorization || '',
-        'content-type': contentType,
-        ...('getHeaders' in data ? data.getHeaders() : {}),
-      },
-      // headers: req.headers,
-    }).then((r) => {
-      res.set(r.headers);
-      return res.status(r.status).json({
-        code: r.status,
-        data: r.data.data || r.data,
-      });
-    }).catch((error) => {
-      if (error.response) {
-        return res.status(error.response.status).json(error.response.data);
-      } if (error.request) {
-        return res.status(500).json({ code: 500, message: error.message });
-      }
-      return res.status(500).json({ code: 500, message: error.message });
-    });
-  } catch (error) {
-    return res.status(500).json({ code: 500, message: error.message });
-  }
-});
+//     return axios({
+//       url: `${API_URL}${req.originalUrl.split('/api').join('')}`,
+//       method: req.method as Method,
+//       data,
+//       headers: {
+//         authorization: req.headers?.authorization || '',
+//         'content-type': contentType,
+//         ...('getHeaders' in data ? data.getHeaders() : {}),
+//       },
+//       // headers: req.headers,
+//     }).then((r) => {
+//       res.set(r.headers);
+//       return res.status(r.status).json({
+//         code: r.status,
+//         data: r.data.data || r.data,
+//       });
+//     }).catch((error) => {
+//       if (error.response) {
+//         return res.status(error.response.status).json(error.response.data);
+//       } if (error.request) {
+//         return res.status(500).json({ code: 500, message: error.message });
+//       }
+//       return res.status(500).json({ code: 500, message: error.message });
+//     });
+//   } catch (error) {
+//     return res.status(500).json({ code: 500, message: error.message });
+//   }
+// });
 
 app.use(express.static(`${__dirname}/public`));
 app.use(express.static(`${__dirname}/assets`));
