@@ -3,7 +3,7 @@ import { Request } from 'express';
 import axios from 'axios';
 
 import { API_URL, IMG_CLOUD_URL } from '../config';
-import { Card } from '../../frontend/utils/interface/Card';
+import { HeadQuarter, Character, Technology } from '../../frontend/utils/interface/Card';
 import { ContextInterface } from '../../frontend/utils/interface/Context';
 
 const getInitialData = async (req: Request, mutateObj: Partial<ContextInterface>): Promise<Partial<ContextInterface>> => {
@@ -12,7 +12,7 @@ const getInitialData = async (req: Request, mutateObj: Partial<ContextInterface>
 
   if (path === '/' || path === '/home') {
     try {
-      const { data } = await axios.get<Card[]>(`${API_URL}`, config);
+      const { data } = await axios.get<(HeadQuarter | Character | Technology)[]>(`${API_URL}`, config);
       const cards = data?.map((item) => {
         return {
           ...item,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from './Card';
+import { HeadQuarter, Character, Technology } from './Card';
 
 export interface ContextInterface {
   dispatch: React.Dispatch<any>;
@@ -9,6 +9,6 @@ export interface ContextInterface {
   };
   language?: 'es' | 'en';
   theme?: 'dark' | 'light';
-  cards?: Card[];
+  cards?: (HeadQuarter | Character | Technology)[];
   [others: string]: any;
 }

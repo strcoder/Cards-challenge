@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Card as CardTypes } from '../../utils/interface/Card';
+import { HeadQuarter as HeadQuarterTypes } from '../../utils/interface/Card';
 
-type CardProps = {
-  card: CardTypes
+type HeadQuarterProps = {
+  card: HeadQuarterTypes
 }
 
-const Card = ({ card }: CardProps) => {
+const HeadQuarter = ({ card }: HeadQuarterProps) => {
   const [imgUrl, setImgUrl] = useState(card.imgUrl);
 
   const onImgError = () => {
@@ -28,4 +28,4 @@ const Card = ({ card }: CardProps) => {
   );
 };
 
-export default Card;
+export default HeadQuarter;
