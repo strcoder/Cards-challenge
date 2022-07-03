@@ -72,7 +72,7 @@ const renderApp = async (req: express.Request, res: express.Response) => {
     language: language || 'es',
   };
   try {
-    // await getInitialData(req, initialState);
+    await getInitialData(req, initialState);
   } catch (error) {
     if (error.response && error.response.data) {
       const { message } = error.response.data;
@@ -102,43 +102,43 @@ const renderApp = async (req: express.Request, res: express.Response) => {
   }
 
   res
-    .set('Content-Security-Policy', "default-src *; img-src * 'self' blob: data: http://*;  style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
+    .set('Content-Security-Policy', "default-src *; Cross-Origin-Resource-Policy: same-site; img-src * 'self' blob: data: http://*;  style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
     .send(setResponse(html, initialState, helmet));
 };
 
-// app.all('/api/*', (req, res) => {
-//   try {
-//     const contentType = req.headers?.['content-type'] || 'application/json';
-//     const data: FormData | Record<string, any> = req.body;
+app.all('/api/*', (req, res) => {
+  try {
+    const contentType = req.headers?.['content-type'] || 'application/json';
+    const data: FormData | Record<string, any> = req.body;
 
-//     return axios({
-//       url: `${API_URL}${req.originalUrl.split('/api').join('')}`,
-//       method: req.method as Method,
-//       data,
-//       headers: {
-//         authorization: req.headers?.authorization || '',
-//         'content-type': contentType,
-//         ...('getHeaders' in data ? data.getHeaders() : {}),
-//       },
-//       // headers: req.headers,
-//     }).then((r) => {
-//       res.set(r.headers);
-//       return res.status(r.status).json({
-//         code: r.status,
-//         data: r.data.data || r.data,
-//       });
-//     }).catch((error) => {
-//       if (error.response) {
-//         return res.status(error.response.status).json(error.response.data);
-//       } if (error.request) {
-//         return res.status(500).json({ code: 500, message: error.message });
-//       }
-//       return res.status(500).json({ code: 500, message: error.message });
-//     });
-//   } catch (error) {
-//     return res.status(500).json({ code: 500, message: error.message });
-//   }
-// });
+    return axios({
+      url: `${API_URL}${req.originalUrl.split('/api').join('')}`,
+      method: req.method as Method,
+      data,
+      headers: {
+        authorization: req.headers?.authorization || '',
+        'content-type': contentType,
+        ...('getHeaders' in data ? data.getHeaders() : {}),
+      },
+      // headers: req.headers,
+    }).then((r) => {
+      res.set(r.headers);
+      return res.status(r.status).json({
+        code: r.status,
+        data: r.data.data || r.data,
+      });
+    }).catch((error) => {
+      if (error.response) {
+        return res.status(error.response.status).json(error.response.data);
+      } if (error.request) {
+        return res.status(500).json({ code: 500, message: error.message });
+      }
+      return res.status(500).json({ code: 500, message: error.message });
+    });
+  } catch (error) {
+    return res.status(500).json({ code: 500, message: error.message });
+  }
+});
 
 app.use(express.static(`${__dirname}/public`));
 app.use(express.static(`${__dirname}/assets`));

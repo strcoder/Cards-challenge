@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from './context';
 import App from './routes/App';
+import { Provider } from './context';
+import { ContextInterface } from './utils/interface/Context';
 import './sass/index.scss';
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  interface Window {
+    __PRELOADED_STATE__: ContextInterface;
+  }
+}
 
 const preloadedState = window.__PRELOADED_STATE__;
 const app = document.getElementById('app');

@@ -20,4 +20,5 @@ export interface Card {
   CardInSet: number;
   CardNumber: number;
   Description: string;
+  imgUrl?: string;
 }
