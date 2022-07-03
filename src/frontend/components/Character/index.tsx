@@ -14,14 +14,14 @@ const Character = ({ card }: CharacterProps) => {
 
   return (
     <div key={card.id}>
-      <figure style={{ width: '50px', height: '50px' }}>
+      <figure className='CardImage'>
         <img
           src={imgUrl}
           loading='lazy'
           alt={card.Name}
           onError={onImgError}
+          className='img-cover'
           crossOrigin='anonymous'
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </figure>
     </div>

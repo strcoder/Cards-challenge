@@ -5,7 +5,7 @@ type TechnologyProps = {
   card: TecnologyTypes
 }
 
-const Technologie = ({ card }: TechnologyProps) => {
+const Technology = ({ card }: TechnologyProps) => {
   const [imgUrl, setImgUrl] = useState(card.imgUrl);
 
   const onImgError = () => {
@@ -13,19 +13,19 @@ const Technologie = ({ card }: TechnologyProps) => {
   };
 
   return (
-    <div key={card.id}>
-      <figure style={{ width: '50px', height: '50px' }}>
+    <div key={card.id} className='TechnologyCard'>
+      <figure className='CardImage'>
         <img
           src={imgUrl}
           loading='lazy'
           alt={card.Name}
           onError={onImgError}
+          className='img-cover'
           crossOrigin='anonymous'
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </figure>
     </div>
   );
 };
 
-export default Technologie;
+export default Technology;

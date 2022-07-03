@@ -1,10 +1,10 @@
 import React from 'react';
 import Cards from '../../containers/Cards';
+import './styles.scss';
 
 const Home = () => {
   return (
-    <section>
-      <h1>Home</h1>
+    <section className='Home'>
       <Cards />
     </section>
   );

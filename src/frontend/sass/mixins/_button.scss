@@ -1,0 +1,32 @@
+@mixin button($color: $white, $background: $black) {
+  color: $color;
+  background-color: $background;
+  @include shadow($background);
+  @if (type-of($background) == 'color') {
+    &:hover {
+      background-color: darken($background, 2%);
+    }
+    &:active, &:focus {
+      box-shadow: 0 0 0 0.2em rgba($background, 0.5);
+    }
+  }
+}
+
+@mixin buttonLink($color: $black) {
+  color: $color;
+  border: none;
+  background: none;
+}
+
+@mixin buttonOutline($color: $black, $background: $white) {
+  color: $color;
+  background: none;
+  border: 1px solid $color;
+  &:hover {
+    color: $background;
+    background-color: $color;
+  }
+  &:active, &:focus {
+    box-shadow: 0 0 0 0.2em rgba($color, 0.5);
+  }
+}

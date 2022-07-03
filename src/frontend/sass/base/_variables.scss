@@ -1,0 +1,182 @@
+//* Generic colors *//
+$red: #C4211B;
+$teal: #04445C;
+$cyan: #04ACF4;
+$blue: #0056b3;
+$pink: #FCC4DC;
+$gray: #A6ABBD;
+$grey: #999999;
+$green: #048444;
+$white: #ffffff;
+$black: #111111;
+$indigo: #4C0484;
+$purple: #7C0C84;
+$orange: #FB9F06;
+$yellow: #FCFB3B;
+
+//* Shades of grey *//
+$gray-100: #fffbfe;
+$gray-200: #fafbfe;
+$gray-300: #fafafb;
+$gray-400: #e6ebf2;
+$gray-500: #b7c3d3;
+$gray-600: #93a4bc;
+$gray-700: #525c6b;
+$gray-800: #4d535b;
+$gray-900: #424953;
+
+// Schema
+$dark-bg: #050B1C;
+$soft-color: #f9f9f9;
+
+//* Shadows *//
+$box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
+$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175) !default;
+$box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075) !default;
+
+//* Components *//
+$border-width: 0.0625rem;
+$border-width-md: 0.125rem;
+$border-width-lg: 0.25rem;
+$border-width-xl: 0.375rem;
+$border-color-white: $white;
+$border-color: #bbc1d33f;
+$border-radius: 0.5rem;
+$border-radius-xl: 1.275rem;
+$border-radius-lg: 0.8rem;
+$border-radius-md: 0.5rem;
+$border-radius-sm: 0.3rem;
+$border-radius-pill: 2rem;
+$circle-radius: 50%;
+$organic-radius: 63% 37% 30% 70% / 50% 45% 55% 50%;
+
+// * Transitions *//
+$transition-theme: all 0.5s ease;
+$transition-base: all 0.2s ease;
+$transition-transform: transform 0.2s ease;
+$transition-fade: opacity 0.15s linear;
+$transition-collapse: height 0.35s ease;
+$transition-tabs: all 0.2s;
+
+//* Fonts *//
+$font-family-base: 'Open Sans', sans-serif;
+$font-family-headers: 'Open Sans', sans-serif;
+$font-size-base: 1rem;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$font-weight-bolder: 700;
+$font-size-xxl: ($font-size-base * 1.55);
+$font-size-xl: ($font-size-base * 1.29);
+$font-size-lg: ($font-size-base * 1.08);
+$font-size-md: ($font-size-base * 0.9);
+$font-size-sm: ($font-size-base * 0.8);
+$font-size-xs: ($font-size-base * 0.75);
+$h1-font-size: $font-size-base * 1.55;
+$h2-font-size: $font-size-base * 1.29;
+$h3-font-size: $font-size-base * 1.08;
+$h4-font-size: $font-size-base * 0.9;
+$h5-font-size: $font-size-base * 0.8;
+$h6-font-size: $font-size-base * 0.75;
+//* Fonts Desktop *//
+$desk-font-size-xxl: ($font-size-base * 2);
+$desk-font-size-xl: ($font-size-base * 1.5);
+$desk-font-size-lg: ($font-size-base * 1.25);
+$desk-font-size-md: ($font-size-base * 1);
+$desk-font-size-sm: ($font-size-base * 0.875);
+$desk-font-size-xs: ($font-size-base * 0.75);
+$desk-h1-font-size: $font-size-base * 2.5;
+$desk-h2-font-size: $font-size-base * 2;
+$desk-h3-font-size: $font-size-base * 1.75;
+$desk-h4-font-size: $font-size-base * 1.5;
+$desk-h5-font-size: $font-size-base * 1.25;
+$desk-h6-font-size: $font-size-base;
+
+$font-weight: (
+  'light': $font-weight-light,
+  'normal': $font-weight-normal,
+  'bold': $font-weight-bold,
+  'bolder': $font-weight-bolder,
+);
+
+$font-size: (
+  'base': $font-size-base,
+  'xxl': $font-size-xxl,
+  'xl': $font-size-xl,
+  'lg': $font-size-lg,
+  'md': $font-size-md,
+  'sm': $font-size-sm,
+  'xs': $font-size-xs,
+);
+
+$font-headers: (
+  'h1': $h1-font-size,
+  'h2': $h2-font-size,
+  'h3': $h3-font-size,
+  'h4': $h4-font-size,
+  'h5': $h5-font-size,
+  'h6': $h6-font-size,
+);
+
+$font-desk-headers: (
+  'h1': $desk-h1-font-size,
+  'h2': $desk-h2-font-size,
+  'h3': $desk-h3-font-size,
+  'h4': $desk-h4-font-size,
+  'h5': $desk-h5-font-size,
+  'h6': $desk-h6-font-size,
+);
+
+//* Screen breackpoints *//
+$breakpoint-xxl: 2560px;
+$breakpoint-xl: 1920px;
+$breakpoint-lg: 1440px;
+$breakpoint-md: 1024px;
+$breakpoint-sm: 768px;
+$breakpoint-mxs: 525px;
+$breakpoint-xs: 425px;
+$breakpoint-xxs: 320px;
+
+$breakpoints-width: (
+  'xxl': $breakpoint-xxl,
+  'xl': $breakpoint-xl,
+  'lg': $breakpoint-lg,
+  'md': $breakpoint-md,
+  'sm': $breakpoint-sm,
+  'mxs': $breakpoint-mxs,
+  'xs': $breakpoint-xs,
+  'xxs': $breakpoint-xxs,
+);
+
+//* btn *//
+$btn-size: (
+  'xl': 18px,
+  'lg': 16px,
+  'md': 14px,
+  'sm': 12px,
+  'xs': 10px,
+);
+
+//* Icon *//
+$icon-box-padding: 1rem;
+$icon-shape: 4.5rem;
+$icon-shape-sm: 3rem;
+$icon-shape-lg: 6rem;
+$icon-shape-img: 6rem;
+$icon-shape-bordered: 5rem;
+$icon-size: 2.5rem;
+$icon-size-xs: 1.25rem;
+$icon-size-sm: 1.5rem;
+$icon-size-md: 2rem;
+$icon-size-lg: 2.5rem;
+$icon-size-xl: 3rem;
+
+//** animations **//
+$animate-repeat: 1;
+$animate-delay: 1s;
+$animate-duration: 1s;
+
+//* zIndex *//
+$modal-z-index: 1200;
+$overlay-z-index: 1000;
+$important-z-index: 2000;
