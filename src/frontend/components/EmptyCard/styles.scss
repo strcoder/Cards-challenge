@@ -1,0 +1,126 @@
+@import '../../sass/base/variables';
+
+.EmptyCard {
+  width: 100%;
+  height: 100%;
+  background-color: $dark-bg;
+  border-radius: $border-radius;
+  border-bottom-left-radius: $border-radius-lg;
+  border-bottom-right-radius: $border-radius-sm;
+  border: 2px solid;
+  &.Awaken {
+    border-color: darken(#114283, 10%);
+  }
+  &.Entropy {
+    border-color: darken(#C08400, 10%);
+  }
+  &.Inhuman {
+    border-color: darken(#1E8311, 10%);
+  }
+  &.Owner {
+    border-color: darken(#831111, 10%);
+  }
+  &.Undeviant {
+    border-color: darken(#606060, 10%);
+  }
+}
+
+.EmptyCard.Character {
+  min-height: calc(100vw / 1.75);
+  & .CardImage {
+    font-size: 4rem;
+  }
+}
+
+.EmptyCard.Technology {
+  & .CardImage {
+    font-size: 2rem;
+  }
+}
+
+.EmptyCard {
+  grid-template-rows: auto 1fr 0.5fr;
+  & .EmptyCard__header {
+    padding: 4px;
+    justify-content: center;
+    font-size: $font-size-xs;
+    background-color: $black;
+  }
+  & .CardImage {
+    padding: 25px;
+    align-items: center;
+    justify-self: center;
+    place-content: center;
+    background-color: $dark-bg;
+  }
+
+  & .EmptyCard__footer {
+    border-radius: $border-radius;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: 6px solid;
+    border-top: none;
+  }
+
+  & .EmptyCard__footer p {
+    top: -20px;
+    right: -5px;
+    padding: 8px;
+    font-weight: bold;
+    position: relative;
+    justify-self: flex-end;
+    align-self: flex-start;
+    font-size: $font-size-lg;
+    background-color: $dark-bg;
+    border-radius: $border-radius;
+  }
+
+  &.Awaken .EmptyCard__footer {
+    background-color: #114283;
+    border-color: darken(#114283, 10%);
+  }
+  &.Entropy .EmptyCard__footer {
+    background-color: #C08400;
+    border-color: darken(#C08400, 10%);
+  }
+  &.Inhuman .EmptyCard__footer {
+    background-color: #1E8311;
+    border-color: darken(#1E8311, 10%);
+  }
+  &.Owner .EmptyCard__footer {
+    background-color: #831111;
+    border-color: darken(#831111, 10%);
+  }
+  &.Undeviant .EmptyCard__footer {
+    background-color: #606060;
+    border-color: darken(#606060, 10%);
+  }
+}
+
+@media screen and (min-width: $breakpoint-xs) {
+  .EmptyCard.Character {
+    & .CardImage {
+      font-size: 6rem;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpoint-sm) {
+  .EmptyCard.Character {
+    min-height: calc(100vw / 3.4);
+    & .CardImage {
+      font-size: 8rem;
+    }
+  }
+  .EmptyCard.Technology {
+    & .CardImage {
+      font-size: 4rem;
+    }
+  }
+  .EmptyCard {
+    & .EmptyCard__header {
+      padding: 8px;
+      font-size: $font-size-lg;
+    }
+  }
+}
