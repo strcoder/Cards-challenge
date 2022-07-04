@@ -5,6 +5,8 @@ import reducer from './reducers';
 
 export const Context = createContext<ContextInterface>({
   theme: 'light',
+  searchedCards: [],
+  filteredCards: [],
   dispatch: () => {},
 });
 

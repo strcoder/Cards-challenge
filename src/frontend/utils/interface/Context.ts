@@ -10,5 +10,7 @@ export interface ContextInterface {
   language?: 'es' | 'en';
   theme?: 'dark' | 'light';
   cards?: (HeadQuarter | Character | Technology)[];
+  searchedCards?: (HeadQuarter | Character | Technology)[];
+  filteredCards?: (HeadQuarter | Character | Technology)[];
   [others: string]: any;
 }

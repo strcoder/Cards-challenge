@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { TiTimes } from 'react-icons/ti';
 import { CgMenuMotion } from 'react-icons/cg';
-import Filters from '../../components/Filters';
-import Searcher from '../../components/Searcher';
+import Filters from '../Filters';
 import { useStateValue } from '../../context';
-import { filters } from './filters';
+import Searcher from '../../components/Searcher';
 import './styles.scss';
 
 const Appbar = () => {
@@ -16,9 +15,10 @@ const Appbar = () => {
     console.log(cardsFind);
   };
 
-  const handleFilters = (data: any) => {
-    console.log(data);
-  };
+  // const handleFilters = (data: any) => {
+  //   const actives = Object?.values(data)?.filter((item) => item);
+  //   console.log(actives);
+  // };
 
   return (
     <section className='Appbar'>
@@ -45,13 +45,10 @@ const Appbar = () => {
         </div>
       )}
       <Searcher onSubmit={searchCard} />
-      {openFilters && (
-        <Filters
-          filters={filters}
-          onSubmit={handleFilters}
-          onClose={() => setOpenFilters(false)}
-        />
-      )}
+      <Filters
+        showFilters={openFilters}
+        onClose={() => setOpenFilters(false)}
+      />
     </section>
   );
 };
