@@ -1,5 +1,9 @@
 # Cards-challenge
 
+# Configuración inicial
+
+ `Cambiar el nombre del archivo .env.example a .env`
+
 # Scripts
 
 ### Para instalar las dependencias
