@@ -13,7 +13,7 @@ const HeadQuarter = ({ card }: HeadQuarterProps) => {
   };
 
   return (
-    <div key={card.id} className='HeadQuarterCard'>
+    <div key={card.id} className='HeadQuarterCard fadeIn'>
       <figure className='CardImage'>
         <img
           src={imgUrl}

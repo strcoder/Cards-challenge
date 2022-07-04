@@ -39,13 +39,13 @@ const Filters = ({ showFilters, onClose }: FiltersProps) => {
   }
 
   return (
-    <section className='Filters'>
+    <section className='Filters bounceInLeft'>
       <p><strong>Filters</strong></p>
       <button
         type='button'
         onClick={onClose}
         title='Close filter'
-        className='Filters--close'
+        className='Filters--close bounceInLeft'
       >
         Close
       </button>

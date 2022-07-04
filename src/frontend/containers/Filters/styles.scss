@@ -25,7 +25,9 @@
   width: 100%;
   height: 100%;
   position: fixed;
+  animation-delay: 1s;
   color: rgba($black, 0);
+  animation-duration: 1s;
   align-items: flex-start;
   background-color: rgba($dark-bg, 0.6);
 }

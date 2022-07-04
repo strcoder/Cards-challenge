@@ -7,7 +7,7 @@ import {
 import { useStateValue } from '../../context';
 import Character from '../../components/Character';
 import HeadQuarter from '../../components/HeadQuarter';
-import Technology from '../../components/Technologie';
+import Technology from '../../components/Technology';
 import './styles.scss';
 
 type ShowedCardsTypes = {

@@ -14,7 +14,7 @@ const Character = ({ card }: CharacterProps) => {
 
   return (
     <div key={card.id}>
-      <figure className='CardImage'>
+      <figure className='CardImage fadeIn'>
         <img
           src={imgUrl}
           loading='lazy'

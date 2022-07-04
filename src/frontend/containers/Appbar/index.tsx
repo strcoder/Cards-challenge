@@ -37,7 +37,7 @@ const Appbar = () => {
         </button>
       </div>
       {openFilters && (
-        <div className='Appbar__handler--open'>
+        <div className='Appbar__handler--open bounceInLeft'>
           <button
             type='button'
             title='Close menu'

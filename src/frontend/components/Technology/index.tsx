@@ -13,7 +13,7 @@ const Technology = ({ card }: TechnologyProps) => {
   };
 
   return (
-    <div key={card.id} className='TechnologyCard'>
+    <div key={card.id} className='TechnologyCard fadeIn'>
       <figure className='CardImage'>
         <img
           src={imgUrl}

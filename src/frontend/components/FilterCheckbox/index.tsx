@@ -10,9 +10,10 @@ type FilterProps = {
 }
 
 const FilterCheckbox = ({ actives, value, register }: FilterProps) => {
+  const isActive = actives.find((item) => item === value.toLowerCase());
   return (
     <label className='Filter' htmlFor={`${value}Checkbox`}>
-      <div className='Filter__box'>
+      <div className={`Filter__box ${isActive ? 'bounceIn' : ''}`}>
         {actives.find((item) => item === value.toLowerCase()) && (
           <BsCheck />
         )}
