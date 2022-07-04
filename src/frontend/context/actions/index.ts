@@ -26,20 +26,23 @@ export const searchCards = ({ dispatch, cards, cardName }) => {
 
 export const filterCards = ({ dispatch, cards, filters }) => {
   try {
-    const filtersType = filters?.filter((item) => item.includes('card type'))?.map((item) => item.split('/')[1]);
-    const filtersFactions = filters?.filter((item) => item.includes('factions'))?.map((item) => item.split('/')[1]);
-    const filtersRarity = filters?.filter((item) => item.includes('rarity'))?.map((item) => item.split('/')[1]);
-    const cardsFind = cards?.filter((card) => {
-      const isTypeContained = filtersType?.find((item) => item === card?.CardType?.toLowerCase());
-      const isFactionContained = filtersFactions?.find((item) => item === card?.Faction?.toLowerCase());
-      const isRarityContained = filtersRarity?.find((item) => item === card?.Rarity?.toLowerCase());
-      if (isTypeContained || isFactionContained || isRarityContained) {
-        return true;
-      }
-      return false;
-    });
-    dispatch(setSearchedCards(cardsFind));
+    const filterRarity = filters?.find((item) => item.includes('rarity'));
+    const filterType = filters?.find((item) => item.includes('card type'));
+    const filterFaction = filters?.find((item) => item.includes('factions'));
+    let list = cards;
+
+    if (filterType) {
+      list = list?.filter((card) => card.CardType.toLowerCase() === filterType.split('/')[1]);
+    }
+    if (filterFaction) {
+      list = list?.filter((card) => card.Faction.toLowerCase() === filterFaction.split('/')[1]);
+    }
+    if (filterRarity) {
+      list = list?.filter((card) => card.Rarity.toLowerCase() === filterRarity.split('/')[1]);
+    }
+    dispatch(setSearchedCards(list));
   } catch (error) {
+    console.log(error);
     dispatch(setError(error));
   }
 };

@@ -12,5 +12,6 @@ export interface ContextInterface {
   cards?: (HeadQuarter | Character | Technology)[];
   searchedCards?: (HeadQuarter | Character | Technology)[];
   filteredCards?: (HeadQuarter | Character | Technology)[];
+  isSearched?: boolean;
   [others: string]: any;
 }

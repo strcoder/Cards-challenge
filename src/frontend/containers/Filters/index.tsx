@@ -14,12 +14,19 @@ type FiltersProps = {
 
 const Filters = ({ showFilters, onClose }: FiltersProps) => {
   const { cards, dispatch } = useStateValue();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [optionsActive, setOptionsActive] = useState<string[]>([]);
 
   const handleOptionActive = (e: any) => {
     let list = optionsActive;
     const isActive = optionsActive.find((item) => item === e.target.value);
+    const isUnique = optionsActive.find((item) => item.split('/')[0].includes(e.target.value.split('/')[0]));
+    if (isUnique && isUnique !== e.target.value) {
+      list = list.filter((item) => item !== isUnique);
+      list.push(e.target.value);
+      setOptionsActive([...list]);
+      return;
+    }
     if (!isActive) {
       list.push(e.target.value);
     } else {
@@ -31,6 +38,20 @@ const Filters = ({ showFilters, onClose }: FiltersProps) => {
   const onSubmit = (data) => {
     const actives = Object?.values(data)?.filter((item) => item);
     filterCards({ cards, dispatch, filters: actives });
+    reset({
+      Awaken: false,
+      Character: false,
+      Common: false,
+      Entropy: false,
+      Inhuman: false,
+      Legendary: false,
+      Owner: false,
+      Rare: false,
+      Technology: false,
+      Uncommon: false,
+      Undeviant: false,
+    });
+    setOptionsActive([]);
     onClose();
   };
 

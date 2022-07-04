@@ -19,7 +19,7 @@ type ShowedCardsTypes = {
 }
 
 const getCardsToShow = () => {
-  const { cards, filteredCards, searchedCards } = useStateValue();
+  const { cards, filteredCards, searchedCards, isSearched } = useStateValue();
 
   const result: ShowedCardsTypes = {
     empty: false,
@@ -29,6 +29,11 @@ const getCardsToShow = () => {
   };
 
   if (cards && cards.length <= 0) {
+    result.empty = true;
+    return result;
+  }
+
+  if (isSearched && searchedCards?.length === 0) {
     result.empty = true;
     return result;
   }
@@ -66,7 +71,7 @@ const Cards = () => {
 
   if (empty) {
     return (
-      <section>
+      <section className='CardsEmpty'>
         <p><strong>No hay cartas disponibles</strong></p>
       </section>
     );

@@ -8,12 +8,10 @@ type CharacterProps = {
 }
 
 const Character = ({ card, animation = 'fadeIn' }: CharacterProps) => {
-  // const [imgUrl, setImgUrl] = useState(card.imgUrl);
   const [error, setError] = useState(false);
 
   const onImgError = () => {
     setError(true);
-    // setImgUrl('https://www.azendportafolio.com/static/img/not-found.png');
   };
 
   if (error) {

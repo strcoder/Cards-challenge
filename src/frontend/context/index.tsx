@@ -7,6 +7,7 @@ export const Context = createContext<ContextInterface>({
   theme: 'light',
   searchedCards: [],
   filteredCards: [],
+  isSearched: false,
   dispatch: () => {},
 });
 
