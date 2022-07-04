@@ -1,0 +1,75 @@
+@import '../../sass/base/variables';
+
+.Searcher {
+  left: 0;
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+  position: fixed;
+  background-color: $dark-bg;
+}
+
+.Searcher__container {
+  grid-template-columns: 1fr auto;
+}
+
+.Searcher__container--input {
+  gap: 10px;
+  width: 104%;
+  left: -25px;
+  display: grid;
+  position: relative;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+}
+
+.Searcher__input--icon {
+  z-index: 1;
+  left: 50px;
+  color: $gray-600;
+  position: relative;
+  font-size: $font-size-xxl;
+  transition: $transition-base;
+  &.true {
+    color: $soft-color;
+  }
+}
+
+.Searcher__input--field {
+  width: 100%;
+  height: 100%;
+  padding: 14px;
+  background: none;
+  padding-left: 50px;
+  color: $soft-color;
+  font-size: $font-size-lg;
+  border: 1px solid $white;
+  transition: $transition-base;
+  border-radius: $border-radius;
+  font-weight: $font-weight-bold;
+  &::placeholder {
+    color: $gray-600;
+  }
+  &:focus,
+  &:active {
+    border: 1px solid $primary-color;
+    outline: 1px solid $primary-color;
+  }
+}
+
+@media screen and (min-width: $breakpoint-sm) {
+  .Searcher {
+    top: 0;
+    bottom: initial;
+    padding-left: 50px;
+  }
+
+  .Searcher__container {
+    gap: 8px;
+  }
+
+  .Searcher__container--input {
+    left: 0px;
+    width: 100%;
+  }
+}

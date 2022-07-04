@@ -1,0 +1,43 @@
+@import '../../sass/base/variables';
+
+.Appbar {
+  height: 0;
+  z-index: 1;
+  width: 100%;
+  position: relative;
+}
+
+.Appbar__handler {
+  right: 0;
+  z-index: 2;
+  position: relative;
+  justify-content: flex-end;
+}
+
+.Appbar__handler--button {
+  font-size: $font-size-lg;
+}
+
+.Appbar__handler--open {
+  top: 10px;
+  z-index: 6;
+  left: 255px;
+  position: fixed;
+  & button {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: $breakpoint-sm) {
+  .Appbar__handler {
+    top: 20px;
+    left: 25px;
+    right: initial;
+    position: fixed;
+  }
+
+  .Appbar__handler--button {
+    height: 51px;
+    font-size: $font-size-xxl;
+  }
+}

@@ -1,21 +1,25 @@
 .Home {
   padding: 25px;
+  padding-bottom: 100px;
 }
 
 @media screen and (min-width: 768px) {
   .Home {
     padding: 25px 50px;
+    padding-top: 100px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .Home {
     padding: 50px 10%;
+    padding-top: 100px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .Home {
     padding: 50px 15%;
+    padding-top: 100px;
   }
 }
