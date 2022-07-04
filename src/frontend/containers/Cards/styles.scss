@@ -22,6 +22,12 @@
   }
 }
 
+.CardButton {
+  padding: 0;
+  background: none;
+  color: $soft-color;
+}
+
 @media screen and (min-width: $breakpoint-xxs) {
   .Cards__characters {
     grid-template-columns: repeat(2, 1fr);

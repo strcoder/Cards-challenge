@@ -4,9 +4,10 @@ import EmptyCard from '../EmptyCard';
 
 type HeadQuarterProps = {
   card: HeadQuarterTypes
+  animation?: 'bounceIn' | 'fadeIn'
 }
 
-const HeadQuarter = ({ card }: HeadQuarterProps) => {
+const HeadQuarter = ({ card, animation = 'fadeIn' }: HeadQuarterProps) => {
   const [error, setError] = useState(false);
 
   const onImgError = () => {
@@ -18,7 +19,7 @@ const HeadQuarter = ({ card }: HeadQuarterProps) => {
   }
 
   return (
-    <div key={card.id} className='HeadQuarterCard fadeIn'>
+    <div key={card.id} className={`HeadQuarterCard ${animation}`}>
       <figure className='CardImage'>
         <img
           loading='lazy'

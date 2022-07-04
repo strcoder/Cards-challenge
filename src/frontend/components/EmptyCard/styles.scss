@@ -26,6 +26,7 @@
 }
 
 .EmptyCard.Character {
+  // min-width: 300px;
   min-height: calc(100vw / 1.75);
   & .CardImage {
     font-size: 4rem;

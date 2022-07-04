@@ -3,10 +3,11 @@ import { Character as CharacterTypes } from '../../utils/interface/Card';
 import EmptyCard from '../EmptyCard';
 
 type CharacterProps = {
-  card: CharacterTypes
+  card: CharacterTypes;
+  animation?: 'bounceIn' | 'fadeIn'
 }
 
-const Character = ({ card }: CharacterProps) => {
+const Character = ({ card, animation = 'fadeIn' }: CharacterProps) => {
   // const [imgUrl, setImgUrl] = useState(card.imgUrl);
   const [error, setError] = useState(false);
 
@@ -21,7 +22,7 @@ const Character = ({ card }: CharacterProps) => {
 
   return (
     <div key={card.id}>
-      <figure className='CardImage fadeIn'>
+      <figure className={`CardImage ${animation}`}>
         <img
           loading='lazy'
           alt={card.Name}

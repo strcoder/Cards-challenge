@@ -3,10 +3,11 @@ import { Technology as TecnologyTypes } from '../../utils/interface/Card';
 import EmptyCard from '../EmptyCard';
 
 type TechnologyProps = {
-  card: TecnologyTypes
+  card: TecnologyTypes;
+  animation?: 'bounceIn' | 'fadeIn'
 }
 
-const Technology = ({ card }: TechnologyProps) => {
+const Technology = ({ card, animation = 'fadeIn' }: TechnologyProps) => {
   const [error, setError] = useState(false);
 
   const onImgError = () => {
@@ -14,11 +15,11 @@ const Technology = ({ card }: TechnologyProps) => {
   };
 
   if (error) {
-    return (<EmptyCard card={card} />);
+    return (<EmptyCard card={card} animation={animation} />);
   }
 
   return (
-    <div key={card.id} className='TechnologyCard fadeIn'>
+    <div key={card.id} className={`TechnologyCard ${animation}`}>
       <figure className='CardImage'>
         <img
           loading='lazy'

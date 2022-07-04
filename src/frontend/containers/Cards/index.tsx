@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Character as CharacterTypes,
   Technology as TechnologyTypes,
@@ -9,6 +9,7 @@ import Character from '../../components/Character';
 import HeadQuarter from '../../components/HeadQuarter';
 import Technology from '../../components/Technology';
 import './styles.scss';
+import CardModal from '../../components/CardModal';
 
 type ShowedCardsTypes = {
   empty: boolean;
@@ -54,7 +55,14 @@ const getCardsToShow = () => {
 };
 
 const Cards = () => {
+  const [cardActive, setCardActive] = useState<any>();
+  const [openModal, setOpenModal] = useState(false);
   const { headQuarters, characters, technologies, empty } = getCardsToShow();
+
+  const showModal = ({ card }) => {
+    setCardActive(card);
+    setOpenModal(true);
+  };
 
   if (empty) {
     return (
@@ -72,9 +80,14 @@ const Cards = () => {
             <strong>Head Quarters</strong>
           </p>
           {headQuarters.map((card) => (
-            <React.Fragment key={`${card.id} ${card.CardType}`}>
+            <button
+              type='button'
+              className='CardButton'
+              onClick={() => showModal({ card })}
+              key={`${card.id} ${card.CardType}`}
+            >
               <HeadQuarter card={card as HeadQuarterTypes} />
-            </React.Fragment>
+            </button>
           ))}
         </div>
       )}
@@ -84,9 +97,14 @@ const Cards = () => {
             <strong>Characters</strong>
           </p>
           {characters.map((card) => (
-            <React.Fragment key={`${card.id} ${card.CardType}`}>
+            <button
+              type='button'
+              className='CardButton'
+              onClick={() => showModal({ card })}
+              key={`${card.id} ${card.CardType}`}
+            >
               <Character card={card as CharacterTypes} />
-            </React.Fragment>
+            </button>
           ))}
         </div>
       )}
@@ -96,12 +114,22 @@ const Cards = () => {
             <strong>Technologies</strong>
           </p>
           {technologies?.map((card) => (
-            <React.Fragment key={`${card.id} ${card.CardType}`}>
+            <button
+              type='button'
+              className='CardButton'
+              onClick={() => showModal({ card })}
+              key={`${card.id} ${card.CardType}`}
+            >
               <Technology card={card as TechnologyTypes} />
-            </React.Fragment>
+            </button>
           ))}
         </div>
       )}
+      <CardModal
+        card={cardActive}
+        showModal={openModal}
+        OnCloseModal={() => setOpenModal(false)}
+      />
     </section>
   );
 };

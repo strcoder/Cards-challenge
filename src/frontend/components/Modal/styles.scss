@@ -1,0 +1,52 @@
+@import '../../sass/base/variables';
+
+.Modal {
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: grid;
+  z-index: 2002;
+  height: 100vh;
+  position: fixed;
+  align-items: center;
+  justify-items: center;
+  transition: $transition-base;
+  &.Awaken .Modal__close {
+    background-color: rgba(#114283, 0.6);
+  }
+  &.Entropy .Modal__close {
+    background-color: rgba(#C08400, 0.6);
+  }
+  &.Inhuman .Modal__close {
+    background-color: rgba(#1E8311, 0.6);
+  }
+  &.Owner .Modal__close {
+    background-color: rgba(#831111, 0.6);
+  }
+  &.Undeviant .Modal__close {
+    background-color: rgba(#606060, 0.6);
+  }
+}
+
+.Modal__close {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+
+.ModalWrap {
+  min-width: 250px;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  border-radius: $border-radius;
+  & > button {
+    justify-self: flex-end;
+  }
+}
+
+.ModalWrap__main {
+  gap: 20px;
+  padding: 10px 25px;
+}

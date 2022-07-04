@@ -2,9 +2,9 @@ import React from 'react';
 import { GiZeusSword } from 'react-icons/gi';
 import './styles.scss';
 
-const EmptyCard = ({ card }) => {
+const EmptyCard = ({ card, animation = 'fadeIn' }) => {
   return (
-    <div className={`EmptyCard fadeIn ${card.Faction} ${card.CardType}`}>
+    <div className={`EmptyCard ${animation} ${card.Faction} ${card.CardType}`}>
       <div className='EmptyCard__header'>
         <p><strong>{card.Name}</strong></p>
       </div>
