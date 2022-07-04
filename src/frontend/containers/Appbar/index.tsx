@@ -4,21 +4,25 @@ import { CgMenuMotion } from 'react-icons/cg';
 import Filters from '../Filters';
 import { useStateValue } from '../../context';
 import Searcher from '../../components/Searcher';
+import { searchCards } from '../../context/actions';
 import './styles.scss';
 
 const Appbar = () => {
-  const { cards } = useStateValue();
+  const { cards, dispatch } = useStateValue();
+  const [cleanSearch, setCleanSearch] = useState(false);
   const [openFilters, setOpenFilters] = useState(false);
 
   const searchCard = ({ cardName }: { cardName: string }) => {
-    const cardsFind = cards?.filter((item) => item.Name.toLowerCase().includes(cardName.toLowerCase()));
-    console.log(cardsFind);
+    searchCards({ cards, cardName, dispatch });
   };
 
-  // const handleFilters = (data: any) => {
-  //   const actives = Object?.values(data)?.filter((item) => item);
-  //   console.log(actives);
-  // };
+  const handleCloseFilter = () => {
+    setOpenFilters(false);
+    setCleanSearch(true);
+    setTimeout(() => {
+      setCleanSearch(false);
+    }, 0);
+  };
 
   return (
     <section className='Appbar'>
@@ -44,10 +48,13 @@ const Appbar = () => {
           </button>
         </div>
       )}
-      <Searcher onSubmit={searchCard} />
+      <Searcher
+        clean={cleanSearch}
+        onSubmit={searchCard}
+      />
       <Filters
         showFilters={openFilters}
-        onClose={() => setOpenFilters(false)}
+        onClose={handleCloseFilter}
       />
     </section>
   );

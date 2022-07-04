@@ -13,17 +13,15 @@ export const setFilteredCards = (filteredCards) => ({
   filteredCards,
 });
 
-export const searchCards = ({ cards, cardName }) => {
-  return (dispatch) => {
-    try {
-      const cardsFind = cards?.filter((item) => {
-        return item.Name.toLowerCase().includes(cardName.toLowerCase());
-      });
-      dispatch(setSearchedCards(cardsFind));
-    } catch (error) {
-      dispatch(setError(error));
-    }
-  };
+export const searchCards = ({ dispatch, cards, cardName }) => {
+  try {
+    const cardsFind = cards?.filter((item) => {
+      return item.Name.toLowerCase().includes(cardName.toLowerCase());
+    });
+    dispatch(setSearchedCards(cardsFind));
+  } catch (error) {
+    dispatch(setError(error));
+  }
 };
 
 export const filterCards = ({ dispatch, cards, filters }) => {

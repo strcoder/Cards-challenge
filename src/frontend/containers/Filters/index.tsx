@@ -29,7 +29,9 @@ const Filters = ({ showFilters, onClose }: FiltersProps) => {
   };
 
   const onSubmit = (data) => {
-    filterCards({ cards, dispatch, filters: optionsActive });
+    const actives = Object?.values(data)?.filter((item) => item);
+    filterCards({ cards, dispatch, filters: actives });
+    onClose();
   };
 
   if (!showFilters) {

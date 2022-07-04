@@ -1,12 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { useForm } from 'react-hook-form';
 import './styles.scss';
 
-const Searcher = ({ onSubmit }) => {
-  const { register, handleSubmit } = useForm();
+const Searcher = ({ onSubmit, clean }) => {
+  const { register, handleSubmit, reset } = useForm();
   const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (clean) {
+      reset({ cardName: '' });
+    }
+  }, [clean]);
 
   return (
     <div className='Searcher'>

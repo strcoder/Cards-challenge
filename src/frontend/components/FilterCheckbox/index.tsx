@@ -22,9 +22,6 @@ const FilterCheckbox = ({ actives, value, register }: FilterProps) => {
         id={`${value}Checkbox`}
         value={value.toLowerCase()}
         {...register}
-        // {...register(`${value}`, {
-        //   onChange: handleOptionActive,
-        // })}
       />
       <p>{value.split('/')[1]}</p>
     </label>
